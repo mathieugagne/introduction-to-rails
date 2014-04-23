@@ -13,3 +13,4 @@ gem 'turbolinks'
 
 gem 'spring',        group: :development
 gem 'debugger',      group: :development
+gem 'thin',          group: :development
