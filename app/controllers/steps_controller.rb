@@ -1,6 +1,6 @@
 class StepsController < ApplicationController
 
-  def getting_started
+  def overview
   end
 
 end

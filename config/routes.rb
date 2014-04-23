@@ -1,3 +1,3 @@
 Rails.application.routes.draw do
-  root to: 'steps#getting_started'
+  root to: 'steps#overview'
 end
