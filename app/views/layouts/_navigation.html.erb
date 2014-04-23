@@ -23,6 +23,9 @@
   <li class="<%= 'active' if current_page?('/setting-default-page') %>">
     <%= link_to 'Setting The Default Page', setting_default_page_path %>
   </li>
+  <li class="<%= 'active' if current_page?('/deploying-to-heroku') %>">
+    <%= link_to 'Deploying to Heroku', deploying_to_heroku_path %>
+  </li>
   <li class="<%= 'active' if current_page?('/voting-topics') %>">
     <%= link_to 'Voting On Topics', voting_topics_path %>
   </li>

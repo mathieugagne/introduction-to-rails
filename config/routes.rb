@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get '/rails-architecture', to: 'steps#rails_architecture'
   get '/crud-scaffolding', to: 'steps#crud_scaffolding'
   get '/setting-default-page', to: 'steps#setting_default_page'
+  get '/deploying-to-heroku', to: 'steps#deploying_to_heroku'
   get '/voting-topics', to: 'steps#voting_topics'
   get '/votes-topics-association', to: 'steps#votes_topics_association'
   get '/allow-people-to-vote', to: 'steps#allow_people_to_vote'

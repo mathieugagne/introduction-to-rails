@@ -1,0 +1,172 @@
+<h1 class="page-header">Deploying To Heroku</h1>
+<div class="doc">
+  <h2>
+    <span>If you haven't yet deployed to heroku, start at </span><a href="#first-time">First-time setup</a><span>. Otherwise, start at </span><a href="#every-time">Every time</a><span>.</span>
+  </h2>
+  <h1>First-time setup</h1>
+  <div class="step" title="Create a heroku application">
+    <h2>Step 1: </span>Create a heroku application</h2>
+    <blockquote>
+      <div class="console">
+        <span>Type this in the terminal:</span><pre>heroku create</pre>
+      </div>
+      <div class="message">
+        <p><code>heroku create</code> registers a new application on heroku's system. You should see some output including your new app's URL.</p>
+      </div>
+    </blockquote>
+  </div>
+  <div class="step" title="Edit the Gemfile">
+    <h2>Step 2: </span>Edit the Gemfile</h2>
+    <blockquote>
+      <div class="alert alert-info">
+        <i class="fa fa-exclamation-circle fa-2x"></i>
+        Each application has its own <code>Gemfile</code>. Be sure you're opening the one inside your app's folder.
+      </div>
+      <div class="message">
+        <p>Heroku will run our application slightly differently than our development computer does, which requires us to make a small change to our <code>Gemfile</code>.</p>
+      </div>
+      <div class="message">
+        <p>Open the file called <code>Gemfile</code> in Sublime Text, or your preferred editor, and find the line containing:</p>
+      </div>
+      <pre class="CodeRay">gem <span class="string"><span class="delimiter">'</span><span class="content">sqlite3</span><span class="delimiter">'</span></span>
+      </pre>
+      <div class="message">
+        <p><strong>Remove that line</strong> and replace it with:</p>
+      </div>
+      <pre class="CodeRay">
+        group <span class="symbol">:development</span>, <span class="symbol">:test</span> <span class="keyword">do</span>
+        gem <span class="string"><span class="delimiter">'</span><span class="content">sqlite3</span><span class="delimiter">'</span></span>
+        <span class="keyword">end</span>
+
+        group <span class="symbol">:production</span> <span class="keyword">do</span>
+        gem <span class="string"><span class="delimiter">'</span><span class="content">pg</span><span class="delimiter">'</span></span>
+        gem <span class="string"><span class="delimiter">'</span><span class="content">rails_12factor</span><span class="delimiter">'</span></span>
+        <span class="keyword">end</span>
+      </pre>
+    </blockquote>
+  </div>
+  <div class="step" title="Apply the Gemfile changes">
+    <h2>Step 3: </span>Apply the Gemfile changes</h2>
+    <blockquote>
+      <div class="console">
+        <span>Type this in the terminal:</span><pre>bundle install --without production</pre>
+      </div>
+      <div class="message">
+        <p>Every time the Gemfile changes, you need to run <code>bundle install</code> for the changes to be processed. The processed version of the changes is stored in another file called <code>Gemfile.lock</code>.</p>
+      </div>
+    </blockquote>
+  </div>
+  <div class="step" title="Commit the Gemfile changes">
+    <h2>Step 4: </span>Commit the Gemfile changes</h2>
+    <blockquote>
+      <div class="message">
+        <p>There are now changes to Gemfile and Gemfile.lock that need to be committed before we can push to heroku.</p>
+      </div>
+      <div class="console">
+        <span>Type this in the terminal:</span>
+        <pre>
+          git add .
+          git commit -m "Changed Gemfile for heroku"
+        </pre>
+      </div>
+    </div>
+  </blockquote>
+</div>
+<h1>Every time</h1>
+  <div class="step" title="Commit any pending changes to git">
+    <h2>Step 1: </span>Commit any pending changes to git</h2>
+    <blockquote>
+      <div class="message">
+        <p>Heroku will only receive the files we've committed into our local git repository. So we need to make sure all changed files have been committed.</p>
+      </div>
+      <div class="console">
+        <span>Type this in the terminal:</span><pre>git status</pre>
+      </div>
+      <div class="message">
+        <p><code>git status</code> shows you any pending changes you've created. If it has no output, you're already ready to deploy! Otherwise...</p>
+      </div>
+      <div class="console">
+        <span>Type this in the terminal:</span><pre>git add .
+        git commit -m "Some helpful message for your future self"
+      </pre>
+    </div>
+    <div class="message">
+      <p>Your commit message should reference whatever your outstanding changes are: something like 'added votes to the topics index'.</p>
+    </div>
+  </blockquote>
+</div>
+<div class="step" title="Push changes to heroku">
+  <h2>Step 2: </span>Push changes to heroku</h2>
+  <blockquote>
+    <div class="console">
+      <span>Type this in the terminal:</span><pre>git push heroku master</pre>
+    </div>
+    <div class="message">
+      <p>This takes all changes you've committed locally and pushes them to heroku.</p>
+    </div>
+  </blockquote>
+</div>
+<div class="step" title="Run database migrations on Heroku">
+  <h2>Step 3: </span>Run database migrations on Heroku</h2>
+  <blockquote>
+    <div class="console">
+      <span>Type this in the terminal:</span><pre>heroku run rake db:migrate</pre>
+    </div>
+    <div class="message">
+      <p>This tells Heroku to run your migrations on its database, like running rake db:migrate locally. Heroku's database is separate from the one on your computer, which means it needs to be updated every time you make changes to the structure of your database.  It also means that you'll not see any of the data you entered into the sqlite3 database on your computer.</p>
+    </div>
+  </blockquote>
+</div>
+<div class="step" title="Visit your application">
+  <h2>Step 4: </span>Visit your application</h2>
+  <blockquote>
+    <div class="console">
+      <span>Type this in the terminal:</span><pre>heroku open</pre>
+    </div>
+    <div class="message">
+      <p>This opens the new application in your browser.</p>
+    </div>
+  </blockquote>
+</div>
+<div class="explanation">
+  <h1>Explanation</h1>
+  <blockquote>
+    <div class="message">
+      <p>First, we had to do some work to make Heroku happy with our application. This required updating the Gemfile and bundling.</p>
+
+      <ul>
+        <li><p>The Gemfile is a list of all the Ruby libraries your application needs.
+          What we've declared here is that we want to use the <code>sqlite3</code> library
+          while we're developing on our computer (the development group) but when
+          deploying to heroku (the production group) we want to use the <code>pg</code> library,
+          which is made for the type of database that heroku uses.</p></li>
+          <li><p>Bundler is how Ruby projects keep track of the gems that they use. We told
+            bundler what we wanted to use in the <code>Gemfile</code>, now we need to make sure those
+            gems are installed. Since we don't have the type of database heroku does, we
+            skip the production gems. Don't worry though! Bundler still logs them so
+            Heroku will install them when they get your code.</p></li>
+          </ul>
+        </div>
+        <div class="message">
+          <p>You should be able to deploy your application any time it's in a good, working state. Your typical workflow will look like:</p>
+        </div>
+        <%= image_tag 'workflow.png', alt: '' %>
+        <ol>
+        <li><div class="message">
+          <p>Add or change some code</p>
+        </div></li>
+        <li><div class="message">
+          <p>Commit your changes (<code>git commit</code>)</p>
+        </div></li>
+        <li><div class="message">
+          <p>(repeat)</p>
+        </div></li>
+      </ol>
+      <div class="message">
+        <p>Any time your changes are committed, you should feel free to <code>git push heroku master</code> and boom! Your changes are live!</p>
+      </div>
+    </blockquote>
+  </div>
+</div>
+<div class="back">Back to <a class="back" href="setting_the_default_page#step2">Setting The Default Page</a>
+</div>
