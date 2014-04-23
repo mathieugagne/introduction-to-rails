@@ -1,0 +1,128 @@
+<h1 class="page-header">Setting The Default Page</h1>
+<div class="doc">
+  <div class="goals">
+    <h1>Goals</h1>
+    <ul>
+      <div class="message">
+        <p>Now that the structure is complete, let's make the flow work smoothly.</p>
+
+        <p>Currently when you go to <a href="http://localhost:3000">http://localhost:3000</a> you see the "Welcome aboard" message.</p>
+
+        <p>It would be easier to use our app if <a href="http://localhost:3000">http://localhost:3000</a> went directly to the topics list.</p>
+
+        <p>In this step we'll make that happen and learn a bit about routes in Rails.</p>
+      </div>
+    </ul>
+  </div>
+  <div class="steps">
+    <div class="step" title="Add a root route">
+      <h1>Step 1: </span>Add a root route</h1>
+      <blockquote>
+        <div class="message">
+          <p>Open the file <code>config/routes.rb</code> in an editor.</p>
+        </div>
+        <div class="message">
+          <p>Search the file for <strong>root</strong>, it should be near the top if you are using Rails 4.</p>
+        </div>
+        <div class="message">
+          <p>Uncomment the line that contains the example command by removing the <code>#</code> sign in front of it, and change it to read <code>root 'topics#index'</code>. When you are done the line should look like this:</p>
+        </div>
+        <pre class="CodeRay">root <span class="string"><span class="delimiter">'</span><span class="content">topics#index</span><span class="delimiter">'</span></span>
+        </pre>
+        <em><div class="message">
+          <p>(Rails 3.x users should add <code>root to: 'topics#index'</code> and will need to remove their <code>public/index.html</code> file).</p>
+        </div></em>
+      </blockquote>
+    </div>
+    <div class="step" title="Confirm your changes">
+      <h1>Step 2: </span>Confirm your changes</h1>
+      <blockquote><div class="message">
+        <p>Go back to <a href="http://localhost:3000/">http://localhost:3000/</a>. You should be taken to the topics list automatically.</p>
+      </div></blockquote>
+    </div>
+  </div>
+  <div class="explanation">
+    <h1>Explanation</h1>
+    <blockquote>
+      <div class="message">
+        <ul>
+          <li>
+            <code>root 'topics#index'</code> is a rails route that says the default
+            address for your site is <code>topics#index</code>. <code>topics#index</code> is the topics
+            list page (the topics controller with the index action).
+          </li>
+          <li>Rails routes control how URLs (web addresses) get matched with
+            code on the server. Similar to how addresses match with houses and
+            apartments.
+          </li>
+          <li>The file <code>config/routes.rb</code> is like an address directory listing the
+            possible addresses and which code goes with each one
+          </li>
+          <li>
+            <p>
+              <code>routes.rb</code> uses some shortcuts so it doesn't always show all the
+              possible URLs. To explore the URLs in more detail we can use the
+              terminal.
+            </p>
+
+            <p>
+              At the terminal type <code>rake routes</code>. You should get something that
+              looks like this:
+            </p>
+            <pre class="CodeRay">$ rake routes
+
+    Prefix Verb   URI Pattern                Controller#Action
+    topics GET    /topics(.:format)          topics#index
+           POST   /topics(.:format)          topics#create
+ new_topic GET    /topics/new(.:format)      topics#new
+edit_topic GET    /topics/:id/edit(.:format) topics#edit
+     topic GET    /topics/:id(.:format)      topics#show
+           PATCH  /topics/:id(.:format)      topics#update
+           PUT    /topics/:id(.:format)      topics#update
+           DELETE /topics/:id(.:format)      topics#destroy
+      root GET    /                          topics#index
+            </pre>
+
+            <p>This shows all the URLs your application responds to. The code that starts with colons are variables so :id means the id number of the record. The code in parenthesis is optional.</p>
+
+            <p>In Rails 4, you can also get this information on your site in development. Go to <a href="http://localhost:3000/rails/info">http://localhost:3000/rails/info</a> and you'll see something like this:</p>
+
+            <p><%= image_tag 'rails4_rails_info_routing.png', alt: '' %></p>
+
+            <p>You'll also see that table in Rails 4 whenever you try to access an invalid route (try <a href="http://localhost:3000/sandwich">http://localhost:3000/sandwich</a>)</p>
+          </li>
+        </ul>
+        <h3>Exploring Routes (optional)</h3>
+
+        <p>Now you can have a look at the paths that are available in your app.
+          Let's try looking at one of the topics routes we just generated.
+          Open up your rails console and play:</p>
+          <pre class="CodeRay">$ rails console
+&gt;&gt; app.topics_path
+=&gt; "/topics"
+&gt;&gt; app.topics_url
+=&gt; "http://www.example.com/topics"
+          </pre>
+          <p>
+            <code>app</code> is a special object that represents your entire application.
+            You can ask it about its routes (as we just did), play with its
+            database connections, or make pseudo-web requests against it with
+            <code>get</code> or <code>post</code> (and lots more).
+          </p>
+        </div>
+      </blockquote>
+    </div>
+    <div class="deploying">
+      <h1>Deploying</h1>
+      <blockquote>
+        <div class="message">
+          <p>Before the next step, you could try deploying your app to Heroku!</p>
+        </div>
+        <p class="link">Go on to <a class="link" href="deploying_to_heroku?back=setting_the_default_page%23step2">Deploying To Heroku</a></p>
+      </blockquote>
+    </div>
+    <div class="step next_step">
+      <h1><span class="prefix">Next Step:</span></h1>
+      <p class="link">Go on to <a class="link" href="voting_on_topics?back=setting_the_default_page%23step2">Voting On Topics</a></p>
+    </div>
+  </div>
