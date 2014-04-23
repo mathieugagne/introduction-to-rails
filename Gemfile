@@ -22,7 +22,8 @@ gem 'jquery-turbolinks'
 gem 'turbolinks'
 
 group :development do
-  gem 'spring',        group: :development
-  gem 'debugger',      group: :development
-  gem 'thin',          group: :development
+  gem 'spring'
+  gem 'debugger'
+  gem 'thin'
+  gem 'sqlite3'
 end
