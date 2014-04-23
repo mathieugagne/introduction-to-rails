@@ -1,0 +1,289 @@
+<h1 class="page-header">Ruby on Rails Install Instructions</h1>
+<div class="doc">
+  <div class="alert alert-warning">
+    <i class="fa fa-exclamation-circle fa-2x"></i>
+    These steps apply to <strong>Ubuntu Linux</strong> only. If you are using some other flavor of Linux, get help from a TA.
+  </div>
+</div>
+<div class="message">
+  <p>You will need sudo access in order to complete these directions (The first user account has this by default).</p>
+</div>
+<div class="step" title="Install packaged software and libraries">
+  <h2>Step 1: Install packaged software and libraries</h2>
+  <blockquote>
+    <div class="message">
+      <p>Open a terminal (Applications &gt; Accessories &gt; Terminal).  You may want to right-click on the terminal icon and select "Add to panel" so the icon will appear next to the default help and firefox icons in the top panel.</p>
+    </div>
+    <div class="console">
+      <span>Type this in the terminal:</span><pre>sudo apt-get install autoconf automake bison build-essential curl git-core libapr1 libaprutil1 libc6-dev libltdl-dev libreadline6 libreadline6-dev libsqlite3-0 libsqlite3-dev libssl-dev libtool libxml2-dev libxslt-dev libxslt1-dev libyaml-dev ncurses-dev openssl sqlite3 zlib1g zlib1g-dev sqlite3 libsqlite3-dev</pre>
+    </div>
+  </blockquote>
+</div>
+<div class="step" title="Install git">
+  <h2>Step 2: Install git</h2>
+  <blockquote>
+    <div class="console">
+      <span>Type this in the terminal:</span><pre>sudo apt-get install git</pre>
+    </div>
+    <div class="message">
+      <p>If this results in an error, you should be ok, as the prior step should have installed <code>git-core</code></p>
+    </div>
+  </blockquote>
+</div>
+<div class="step" title="Install RVM">
+  <h2>Step 3: Install RVM</h2>
+  <div class="message">
+    <p>
+      RVM stands for Ruby Version Manager and is the easiest way to install and manage Ruby.  The <a href="http://rvm.beginrescueend.com/rvm/install/">official RVM install instructions</a> are available here, but this should work for you:
+    </p>
+  </div>
+  <div class="step" title="Install RVM">
+    <h3>Step 3.1: Install RVM</h3>
+    <blockquote>
+      <div class="console">
+        <span>Type this in the terminal:</span><pre>curl -L get.rvm.io | bash -s stable</pre>
+      </div>
+      <div class="message">
+        <p>This will do some stuff and print a long message which you can ignore.</p>
+      </div>
+    </blockquote>
+  </div>
+  <div class="step" title="Configure your shell">
+    <h3>Step 3.2: Configure your shell</h3>
+    <blockquote>
+      <div class="message">
+        <p>Every time you open a new terminal window, rvm will be active inside it. Close your terminal window and open a new one.</p>
+      </div>
+      <div class="verify">
+        <h3>Verify </h3>
+        <div class="console">
+          <span>Type this in the terminal:</span><pre>type rvm | head -1</pre>
+        </div>
+        <div class="result">
+          <span>Expected result:</span><pre>rvm is a function</pre>
+        </div>
+        <div class="console">
+          <span>Type this in the terminal:</span><pre>rvm -v</pre>
+        </div>
+        <div class="result fuzzy-result">
+          <span>Approximate expected result:</span><pre>rvm 1<span class="fuzzy-lightened">.x.x (stable) by Wayne E. Seguin (wayneeseguin@gmail.com), Michal Papis &lt;mpapis@gmail.com&gt; [https://rvm.beginrescueend.com/]</span></pre>
+          <div class="fuzzy-hint">The greyed-out text may differ and is not important.</div>
+        </div>
+      </div>
+    </blockquote>
+  </div>
+</div>
+<div class="step" title="Install Ruby">
+  <h2>Step 4: Install Ruby</h2>
+  <blockquote>
+    <div class="console">
+      <span>Type this in the terminal:</span><pre>rvm install 2.1.1</pre>
+    </div>
+    <div class="message">
+      <p>This downloads and compiles Ruby, which takes a while.</p>
+    </div>
+    <div class="console">
+      <span>Type this in the terminal:</span>
+      <pre>
+rvm use 2.1.1
+rvm --default use 2.1.1
+      </pre>
+    </div>
+    <div class="verify">
+      <h2>Verify</h2>
+      <blockquote>
+        <div class="console">
+          <span>Type this in the terminal:</span><pre>ruby -v</pre>
+        </div>
+        <div class="result fuzzy-result">
+          <span>Approximate expected result:</span><pre>ruby 2.1.1p76 (2014-02-24 revision 45161) [x86_64-linux]</pre>
+          <div class="fuzzy-hint">The greyed-out text may differ and is not important.</div>
+        </div>
+      </blockquote>
+    </div>
+    <div>
+      <h2>Troubleshooting</h2>
+      <div class="alert alert-warning">
+        <h3>
+          <i class="fa fa-exclamation-circle fa-2x"></i>
+          <strong>If <code>rvm install 2.1.1</code> says <code>autoreconf was not found in the PATH</code></strong>
+        </h3>
+        <div class="half-width">
+          <strong>Mac OS</strong>
+          <div class="console">
+            <span>Type this in the terminal:</span>
+            <pre>brew install automake</pre>
+          </div>
+        </div>
+        <div class="half-width">
+          <strong>Ubuntu Linux</strong>
+          <div class="console">
+            <span>Type this in the terminal:</span>
+            <pre>sudo apt-get install automake</pre>
+          </div>
+        </div>
+      </div>
+      <div class="message">
+        <p>Once that completes, retry <code>rvm install 2.1.1</code></p>
+      </div>
+    </div>
+  </div>
+  <div class="step" title="Install Rails">
+    <h2>Step 5: Install Rails</h2>
+    <blockquote>
+      <div class="message">
+        <p>Using a terminal again, execute the following command to install rails.</p>
+      </div>
+      <div class="console">
+        <span>Type this in the terminal:</span><pre>gem install rails</pre>
+      </div>
+    </blockquote>
+  </div>
+  <div class="step" title="Sublime Text 2">
+    <h2>Step 6: Sublime Text 2</h2>
+    <blockquote>
+      <div class="message">
+        <p>If you don't have a preferred code editor, you can install Sublime Text 2. It's available for <a href="http://c758482.r82.cf2.rackcdn.com/Sublime%20Text%202.0.1.tar.bz2">32-bit machines</a> and <a href="http://c758482.r82.cf2.rackcdn.com/Sublime%20Text%202.0.1%20x64.tar.bz2">64-bit machines</a></p>
+
+        <p>Check <a href="http://www.sublimetext.com/2">http://www.sublimetext.com/2</a> for the latest version.</p>
+      </div>
+    </blockquote>
+  </div>
+  <h2>Step 7: Configure Git</h2>
+  <blockquote>
+    <div class="doc">
+      <div class="console">
+        <span>Type this in the terminal:</span>
+        <pre>
+git config --global user.name "Your Actual Name"
+git config --global user.email "Your Actual Email"
+        </pre>
+      </div>
+      <div class="alert alert-info">
+        <i class="fa fa-exclamation-circle fa-2x"></i>
+        Use the same email address for heroku, git, github, and ssh.
+      </div>
+      <div class="verify">
+        <h2>Verify</h2>
+        <blockquote>
+          <div class="console">
+            <span>Type this in the terminal:</span><pre>git config --get user.name</pre>
+          </div>
+          <div class="result">
+            <span>Expected result:</span><pre>your name</pre>
+          </div>
+          <div class="console">
+            <span>Type this in the terminal:</span><pre>git config --get user.email</pre>
+          </div>
+          <div class="result">
+            <span>Expected result:</span><pre>your email address</pre>
+          </div>
+        </blockquote>
+      </div>
+      <div class="message tip vertical-centerer">
+        <div class="vertically-centered">
+          <p><strong>Colored output in Git</strong></p>
+          <div class="console">
+            <span>Type this in the terminal:</span>
+            <pre>
+git config --global color.diff auto
+git config --global color.status auto
+git config --global color.branch auto
+            </pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </blockquote>
+  <h2>Step 8: Create A Heroku Account</h2>
+  <blockquote>
+    <div class="doc">
+      <div class="message">
+        <p>We'll be using Heroku to put our apps online because it's simple and free for the tier we'll be needing.</p>
+      </div>
+      <div class="step" title="Visit the Heroku web site">
+        <h3>Step 8.1: Visit the Heroku web site</h3>
+        <blockquote><a href="http://heroku.com">http://heroku.com</a></blockquote>
+      </div>
+      <div class="step" title="Create an account">
+        <h3>Step 8.2: </span>Create an account</h3>
+        <blockquote>
+          <div class="message">
+            <p>Click the big <strong>Sign Up</strong> button (it's about halfway down the page)</p>
+          </div>
+          <div class="message">
+            <p>Enter your email address.</p>
+          </div>
+          <div class="alert alert-info">
+            <i class="fa fa-exclamation-circle fa-2x"></i>
+            Use the same email address for heroku, git, github, and ssh.
+          </div>
+        </blockquote>
+      </div>
+      <div class="step" title="Activate your account">
+        <h3>Step 8.3: Activate your account</h3>
+        <blockquote>
+          <div class="message">
+            <p>Heroku will send you an activation email. Open it and click on the activation link. It will take you to the Heroku site. Enter and confirm your password. Hit Save.</p>
+          </div>
+        </blockquote>
+      </div>
+      <div class="step" title="Install the Heroku toolbelt">
+        <h3>Step 8.4: Install the Heroku toolbelt</h3>
+        <blockquote>
+          <div class="message">
+            <p>Visit <a href="https://toolbelt.heroku.com/">https://toolbelt.heroku.com/</a>, click the download link, and install.</p>
+          </div>
+          <div class="verify">
+            <h3>Verify </h3>
+            <blockquote>
+              <div class="console">
+                <span>Type this in the terminal:</span><pre>heroku version</pre>
+              </div>
+              <div class="result">
+                <span>Expected result:</span><pre>2.26.7 or higher</pre>
+              </div>
+            </blockquote>
+          </div>
+          <div class="message">
+            <p>Windows users, if <code>heroku version</code> doesn't work, open a new terminal window after the heroku installer has finished.</p>
+          </div>
+        </blockquote>
+      </div>
+      <div class="step" title="Add your SSH key to your Heroku account">
+        <h3>Step 8.5: Add your SSH key to your Heroku account</h3>
+        <blockquote>
+          <div class="console">
+            <span>Type this in the terminal:</span><pre>heroku keys:add</pre>
+          </div>
+          <div class="message">
+            <p>hit enter to accept the default key file to use</p>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+  </blockquote>
+  <h2>Step 9: Final sanity check</h2>
+  <blockquote>
+    <p>
+      On a new terminal window, make sure these commands output something similar
+    </p>
+    <pre>
+rvm -v
+#=> rvm 1.25.22 (master) by Wayne E. Seguin <wayneeseguin@gmail.com>, Michal Papis <mpapis@gmail.com> [https://rvm.io/]
+    </pre>
+    <pre>
+ruby -v
+#=> ruby 2.1.1p76 (2014-02-24 revision 45161) [x86_64-linux]
+    </pre>
+    <pre>
+rails -v
+#=>  Rails 4.1.0
+    </pre>
+    <pre>
+git --version
+#=> git version 1.9.1
+    </pre>
+    <pre>heroku version</pre>
+  </blockquote>
+</div>
