@@ -1,0 +1,112 @@
+<h1 class="page-header">Redirect To The Topics List After Creating A New Topic</h1>
+<div class="doc">
+  <div class="goals">
+    <h1>Goals</h1>
+    <div class="message">
+      <p>
+        When a user creates a new topic, or edits an existing topic, they are
+        currently shown a page with just that topic. For our voting app it makes
+        more sense that they would be taken back to the topic list."
+      </p>
+
+      <p>
+        In this step we'll change the flow of our app so that the user is taken back to the topics list after they add a new topic (create) or
+        edit an existing topic (update).
+      </p>
+    </div>
+  </div>
+  <div class="steps">
+    <div class="step" title="Change the topics controller">
+      <h1>Step 1: Change the topics controller</h1>
+      <blockquote>
+        <div class="message">
+          <p>Open <code>app/controllers/topics_controller.rb</code> and look at the create method. </p>
+        </div>
+        <div class="message">
+          <p>Find the line:</p>
+        </div>
+        <pre class="CodeRay">redirect_to @topic, notice: 'Topic was successfully created.'</pre>
+        <div class="message">
+          <p>and change <code>@topic</code> to <code>topics_path</code> like this:</p>
+        </div>
+        <pre class="CodeRay">redirect_to topics_path, notice: 'Topic was successfully created.'</pre>
+        <div class="message">
+          <p>so that the file looks like this:</p>
+        </div>
+        <pre class="CodeRay">
+def create
+  @topic = Topic.new(topic_params)
+
+  respond_to do |format|
+    if @topic.save
+      redirect_to topics_path, notice: 'Topic was successfully created.'
+    else
+      render action: 'new'
+    end
+  end
+end
+        </pre>
+        <div class="message">
+          <p>In the same file, locate the update method. </p>
+        </div>
+        <div class="message">
+          <p>Find the line:</p>
+        </div>
+        <pre class="CodeRay">redirect_to @topic, notice: 'Topic was successfully updated.'</pre>
+        <div class="message">
+          <p>and change <code>@topic</code> to <code>topics_path</code> like before:</p>
+        </div>
+        <pre class="CodeRay">redirect_to topics_path, notice: 'Topic was successfully updated.'</pre>
+      </blockquote>
+    </div>
+    <div class="step" title="Add the flash message to your application view">
+      <h1>Step 2: Add the flash message to your application view</h1>
+      <blockquote>
+        <div class="message">
+          <p>Open <code>app/views/layouts/application.html.erb</code>.</p>
+        </div>
+        <div class="message">
+          <p>Find the <code>&lt;body&gt;</code> HTML tag and immediately after add the following code:</p>
+        </div>
+        <pre class="CodeRay">
+&lt;% flash.each do |name, msg| %&gt;
+  &lt;div&gt;&lt;%= msg %&gt;&lt;/div&gt;
+&lt;% end %&gt;</pre>
+      </blockquote>
+    </div>
+    <div class="step" title="Confirm your changes">
+      <h1>Step 3: Confirm your changes</h1>
+      <blockquote>
+        <div class="message">
+          <p>Look at <a href="http://localhost:3000">http://localhost:3000</a>.</p>
+        </div>
+      </blockquote>
+    </div>
+  </div>
+  <div class="explanation">
+    <h1>Explanation</h1>
+    <blockquote>
+      <div class="message">
+        <ul>
+          <li>
+            <code>redirect_to topics_path, notice: 'Topic was successfully created.'</code>:
+            <ul>
+              <li>
+                <code>redirect_to topics_path</code> means show the <strong>topics list page</strong> when we're done creating or updating a topic
+              </li>
+              <li>
+                <code>notice: 'Topic was successfully created/updated.'</code> puts the message into the flash so it will be displayed on the topics list
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </blockquote>
+  </div>
+  <div class="step next_step">
+    <h1><span class="prefix">Next Step:</span></h1>
+    <p class="link">
+      Go on to <a class="link" href="make_the_topic_title_a_link?back=redirect_to_the_topics_list_after_creating_a_new_topic%23step3">Make The Topic Title A Link</a>
+    </p>
+  </div>
+</div>
