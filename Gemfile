@@ -1,7 +1,17 @@
 source 'https://rubygems.org'
 
 gem 'rails', '4.1.0'
-gem 'sqlite3'
+
+group :production do
+  gem 'pg'
+  gem 'unicorn'
+  gem 'rails_12factor'
+  gem 'heroku-deflater'
+end
+gem 'memcachier'
+gem 'dalli'
+gem 'kgio'
+gem 'rack-cache'
 gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
@@ -11,6 +21,8 @@ gem 'jquery-rails'
 gem 'jquery-turbolinks'
 gem 'turbolinks'
 
-gem 'spring',        group: :development
-gem 'debugger',      group: :development
-gem 'thin',          group: :development
+group :development do
+  gem 'spring',        group: :development
+  gem 'debugger',      group: :development
+  gem 'thin',          group: :development
+end
