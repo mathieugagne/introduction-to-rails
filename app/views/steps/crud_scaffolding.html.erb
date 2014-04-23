@@ -1,0 +1,182 @@
+<h1 class="page-header">CRUD With Scaffolding</h1>
+<div class="doc">
+  <div class="goals">
+    <h1>Goals</h1>
+    <div class="message">
+      <p>At the core, most database driven web sites are the same. They need to store records and provide a way to do the following:</p>
+      <ul>
+        <li>
+          <strong>C</strong>reate new records in the database
+        </li>
+        <li>
+          <strong>R</strong>ead or show the records in the database
+        </li>
+        <li>
+          <strong>U</strong>pdate existing records
+        </li>
+        <li>
+          <strong>D</strong>estroy or delete records
+        </li>
+      </ul>
+      <p>Because these 4 actions (CRUD) are so common, rails includes the scaffold command to make creating them easier.</p>
+    </div>
+  </div>
+  <div class="steps">
+    <div class="step">
+      <h1>Step 1</h1>
+      <blockquote>
+        <div class="console">
+          <span>Type this in the terminal:</span><pre>rails server</pre>
+        </div>
+      </blockquote>
+    </div>
+    <div class="step">
+      <h1>Step 2</h1>
+      <blockquote>
+        <div class="message">
+          <p>Point your browser to <a href="http://localhost:3000/topics">http://localhost:3000/topics</a></p>
+        </div>
+        <div class="message">
+          <p>You should see a page listing topics that looks something like this:</p>
+        </div>
+        <%= image_tag "Seattle_topic_list_page.png", alt: '' %>
+      </blockquote>
+    </div>
+    <div class="step">
+      <h1>Step 3</h1>
+      <blockquote>
+        <div class="message">
+          <ul>
+            <li>Click on "New Topic"</li>
+            <li>Fill in the form and click "Create Topic"</li>
+            <li>You should see a confirmation page like this:</li>
+          </ul>
+        </div>
+        <%= image_tag "Seattle_topic_created.png",  alt: '' %>
+      </blockquote>
+    </div>
+    <div class="step">
+      <h1>Step 4</h1>
+      <blockquote>
+        <div class="message">
+          <ul>
+            <li>Click on "back"</li>
+            <li>You should see the topic list again, this time with your new topic listed:</li>
+          </ul>
+          <p>
+            <%= image_tag "Seattle_list_with_topic.png",  alt: '' %>
+          </p>
+
+          <ul>
+            <li>Try the 'show', 'edit', and 'destroy' links to see what they do</li>
+            <li>You've created a basic database driven web site, congrats!</li>
+          </ul>
+        </div>
+      </blockquote>
+    </div>
+  </div>
+  <div class="explanation">
+    <h1>Explanation</h1>
+    <blockquote>
+      <div class="message">
+        <p>How did all those pages get created and hooked together? The rails scaffold did it for you.</p>
+        <p>Let's take a closer look at some of the files rails created:</p>
+        <ul>
+          <li>
+            <p><code>app/models/topic.rb</code></p>
+            <ul>
+              <li>This file contains code for our topic model. If you look at it,
+                it's nearly blank. Creating, reading, updating, and deleting
+                records are built into rails.
+              </li>
+            </ul>
+          </li>
+          <li>
+            <p><code>app/views/topics</code></p>
+            <ul>
+              <li>This folder contains all the views for our topics model. This is
+                where the code for the forms you used above is stored. Rails
+                created all of these pages as part of the scaffold.
+              </li>
+              <li>If you've written HTML before, many lines in the views should
+                look familiar. Rails views are HTML with some extra code added
+                to display data from the database.
+              </li>
+            </ul>
+          </li>
+          <li>
+            <p><code>app/views/topics/index.html.erb</code></p>
+
+            <ul>
+              <li>This is the code for the page that lists all the topics.
+              </li>
+              <li>Index is the name given to the "default" page for a web site or a
+                section of a web site. When you navigate to
+                http://localhost:3000/topics the topics index page is what is
+                sent to your computer.
+              </li>
+            </ul>
+          </li>
+          <li>
+            <p><code>app/views/topics/show.html.erb</code></p>
+
+            <ul>
+              <li>This is the page you get when you click the "show" link on the
+                "Listing topics" page.
+              </li>
+            </ul>
+          </li>
+          <li>
+            <p><code>app/views/topics/new.html.erb</code></p>
+
+            <ul>
+              <li>This is the page you get when you click on "New Topic".
+              </li>
+            </ul>
+          </li>
+          <li>
+            <p><code>app/views/topics/edit.html.erb</code></p>
+
+            <ul>
+              <li>This is the page you get when you click on "Edit"</li>
+            </ul>
+          </li>
+          <li>
+            <p><code>app/views/topics/_form.html.erb</code></p>
+
+            <ul>
+              <li>You may have noticed that the page for new topics and the page
+                to edit topics looked similar. That's because they both use the
+                code from this file to show a form. This file is called a
+                partial since it only contains code for part of a page. Partials
+                always have filenames starting with an underscore character.
+              </li>
+            </ul>
+          </li>
+          <li>
+            <p>
+              Challenge question: Can you find the line of code in new.html.erb
+              and edit.html.erb that makes the form partial appear?
+            </p>
+          </li>
+          <li>
+            <p><code>app/controllers/topics_controller.rb</code></p>
+
+            <ul>
+              <li>This is the controller file that rails created as part of the scaffold</li>
+              <li>
+                If you look you'll see a method (a line beginning with
+                <code>def</code>) for each of the views listed above (except
+                _form.html.erb)
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </blockquote>
+  </div>
+  <div class="step next_step">
+    <h1><span class="prefix">Next Step:</span></h1>
+    <p class="link">Go on to <a class="link" href="setting_the_default_page?back=CRUD_with_scaffolding%23step4">Setting The Default Page</a></p>
+  </div>
+</div>
