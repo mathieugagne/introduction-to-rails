@@ -1,0 +1,170 @@
+<h1 class="page-header">Hooking Up Votes And Topics</h1>
+<div class="doc">
+  <div class="goals">
+    <h1>Goals</h1>
+    <%= image_tag 'topic_votes_association.png', alt: '' %>
+    <div class="message">
+      <p>
+        Because there is an explicit relationship between a topic and its
+        votes, we need to specify that. In this step, we'll explicitly
+        declare the relationship between votes and topics.
+      </p>
+    </div>
+  </div>
+  <div class="steps">
+    <div class="step" title="Teach the Topic model about Votes">
+      <h1>Step 1: </span>Teach the Topic model about Votes</h1>
+      <blockquote>
+        <div class="message">
+          <p>Edit <code>app/models/topic.rb</code> so that it looks like this:</p>
+        </div>
+        <pre class="CodeRay">
+class Topic &lt; ActiveRecord::Base
+  has_many :votes, dependent: :destroy
+end
+        </pre>
+      </blockquote>
+    </div>
+    <div class="step" title="Teach the Vote model about Topics">
+      <h1>Step 2: </span>Teach the Vote model about Topics</h1>
+      <blockquote>
+        <div class="message">
+          <p>Edit <code>app/models/vote.rb</code> so that it looks like this:</p>
+        </div>
+        <pre class="CodeRay">
+class Vote &lt; ActiveRecord::Base
+  belongs_to :topic
+end
+        </pre>
+      </blockquote>
+    </div>
+    <div class="step" title="Play around with Topics and Votes in the Rails console">
+      <h1>Step 3: </span>Play around with Topics and Votes in the Rails console</h1>
+      <blockquote>
+        <div class="message">
+          <p>First, make sure you've made at least one topic on the site.</p>
+        </div>
+        <div class="console">
+          <span>Next, open a Rails console in a terminal window:</span>
+          <pre>rails c</pre>
+        </div>
+        <div class="result">
+          <span>Expected result:</span>
+          <pre>
+$ rails c
+Loading development environment (Rails 4.1.0)
+2.1.1 :001 &gt;
+          </pre>
+        </div>
+        <div class="message">
+          <p>At the console, try the following things</p>
+        </div>
+        <div class="console">
+          <span>See how many topics exist:</span>
+          <pre>Topic.count</pre>
+        </div>
+        <div class="console">
+          <span>Save the first topic into a variable:</span>
+          <pre>my_topic = Topic.first</pre>
+        </div>
+        <div class="message tip vertical-centerer">
+          <h5>
+            <i class="fa fa-info-circle fa-2x"></i>
+            <code>my_topic</code> here could have been any variable name, but we'll stick with <code>my_topic</code> for consistency.
+          </h5>
+        </div>
+      </div>
+      <div class="console">
+        <span>Change the title of that topic to something else:</span>
+        <pre>my_topic.update_attributes(title: 'Edited in the console')</pre>
+      </div>
+      <div class="console">
+        <span>Add a vote to that topic:</span><pre>my_topic.votes.create</pre>
+      </div>
+      <div class="console">
+        <span>See how many votes that topic has:</span><pre>my_topic.votes.count</pre>
+      </div>
+      <div class="console">
+        <span>Remove a vote from that topic:</span><pre>my_topic.votes.first.destroy</pre>
+      </div>
+      <div class="message">
+        <p>Note that the things you can do to <strong>Model classes</strong> (like <strong>Topic</strong> and <strong>Vote</strong>), differ from the things you can do to <strong>Model instances</strong> (like my_topic, here). <strong>my_topic.votes</strong> is an <strong>association</strong>, and here behaves mostly like a model class.</p>
+      </div>
+      <div>
+        <div class="half-width">
+          <strong>Model class / association methods</strong>
+          <ul class="no-style-type">
+            <li>Topic.first</li>
+            <li>Topic.last</li>
+            <li>Topic.all</li>
+            <li>Topic.count</li>
+            <li>Topic.find_by_id(5)</li>
+            <li>Topic.destroy_all</li>
+            <li>my_topic.votes.count</li>
+            <li>my_topic.votes.create</li>
+            <li>my_topic.votes.destroy_all</li>
+          </ul>
+        </div>
+        <div class="half-width">
+          <strong>Model instance methods</strong>
+          <ul class="no-style-type">
+            <li>my_topic.title</li>
+            <li>my_topic.title = 'New title'</li>
+            <li>my_topic.update_attributes(title: 'New title')</li>
+            <li>my_topic.save</li>
+            <li>my_topic.save!</li>
+            <li>my_topic.destroy</li>
+            <li>my_topic.votes.first.destroy</li>
+          </ul>
+        </div>
+      </div>
+      <div class="message">
+        <p>An exhaustive list of things you can do to models and associations can be found in the <a href="http://guides.rubyonrails.org/active_record_querying.html">Active Record Query Interface RailsGuide</a>.</p>
+      </div>
+    </blockquote>
+  </div>
+</div>
+<div class="explanation">
+  <h1>Explanation</h1>
+  <blockquote>
+    <div class="message">
+      <p><code>has_many</code> and <code>belongs_to</code>:</p>
+
+      <ul>
+        <li>In rails, relationships between models are called associations.</li>
+        <li>Associations (usually) come in pairs.</li>
+        <li>
+          A topic will have many votes so we put <code>has_many :votes</code> in the
+          topic model.
+          <ul>
+            <li>
+              When you ask a topic for its votes, you get an array of votes
+              for that topic.
+            </li>
+          </ul>
+        </li>
+        <li>
+          A vote is for a particular topic, so we put <code>belongs_to :topic</code>
+          in the vote model.
+          <ul>
+            <li>
+              When you ask a vote for its topic, you get the topic for that
+              vote.
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <p>
+        It can still be important to clean up after yourself! <code>dependent: :destroy</code>
+        on <code>has_many :votes</code> means when a <strong>Topic</strong> gets destroyed, all
+        the <strong>votes</strong> that correspond to it will be destroyed, too. Without
+        <code>dependent :destroy</code>, those votes would live on the database forever.
+      </p>
+    </div>
+  </blockquote>
+</div>
+<div class="step next_step">
+  <h1><span class="prefix">Next Step:</span></h1>
+  <p class="link">Go on to <a class="link" href="allow_people_to_vote?back=hooking_up_votes_and_topics%23step3">Allow People To Vote</a></p>
+</div>
+</div>
