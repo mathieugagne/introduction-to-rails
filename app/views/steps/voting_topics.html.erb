@@ -1,0 +1,57 @@
+<h1 class="page-header">Voting On Topics</h1>
+<div class="doc">
+  <div class="goals">
+    <h1>Goals</h1>
+    <ul>
+      <li><div class="message">
+        <p>Create a model for votes</p>
+      </div></li>
+      <table class="table table-bordered">
+        <thead><tr><th>Votes</th></tr></thead>
+        <tbody>
+          <tr><td>id</td></tr>
+          <tr><td>topic_id</td></tr>
+        </tbody>
+      </table>
+      <div class="message">
+        <p>Every topic in suggestotron can be voted on. In order to count votes, we need to record votes. We'll add that table now.</p>
+      </div>
+    </ul>
+  </div>
+  <div class="steps">
+    <h1>Steps</h1>
+    <blockquote>
+      <div class="console">
+        <span>Type this in the terminal:</span><pre>rails generate model vote topic_id:integer
+        rake db:migrate
+      </pre>
+    </div>
+  </blockquote>
+</div>
+<div class="explanation">
+  <h1>Explanation</h1>
+  <blockquote>
+    <div class="message">
+      <ul>
+        <li>Just like before, we're creating a new model named "vote"</li>
+        <li>
+          The only thing really different is the integer we added called <code>topic_id</code>.
+          <ul>
+            <li>
+              <code>topic_id</code> is the data we need to draw the line between votes and topics.</li>
+            </ul>
+          </li>
+          <li>
+            We didn't generate a full scaffold this time because we aren't
+            going to do the full CRUD for votes; they're just going to be
+            considered part of topics as-is.
+          </li>
+        </ul>
+      </div>
+    </blockquote>
+  </div>
+  <div class="step next_step">
+    <h1><span class="prefix">Next Step:</span></h1>
+    <p class="link">Go on to <a class="link" href="hooking_up_votes_and_topics?back=voting_on_topics%23step">Hooking Up Votes And Topics</a></p>
+  </div>
+</div>
