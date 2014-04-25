@@ -1,7 +1,7 @@
 <h1 class="page-header">Allow People To Vote</h1>
 <div class="doc">
   <div class="goals">
-    <h1>Goals</h1>
+    <h2>Goals</h2>
     <ul>
       <div class="message">
         <p>Now we're going to add a button people can click to cast a vote.</p>
@@ -10,7 +10,7 @@
   </div>
   <div class="steps">
     <div class="step" title="Add a new controller action for voting">
-      <h1>Step 1: Add a new controller action for voting</h1>
+      <h3>Step 1: Add a new controller action for voting</h3>
       <blockquote>
         <div class="message">
           <p>Edit <code>app/controllers/topics_controller.rb</code> to add a method like this:</p>
@@ -38,7 +38,7 @@ end
       </blockquote>
     </div>
     <div class="step" title="Add a new route for voting">
-      <h1>Step 2: Add a new route for voting</h1>
+      <h3>Step 2: Add a new route for voting</h3>
       <blockquote>
         <div class="message">
           <p>Open <code>config/routes.rb</code> and find the section that looks like this:</p>
@@ -64,7 +64,7 @@ upvote_topic  POST   /topics/:id/upvote(.:format) topics#upvote
       </blockquote>
     </div>
     <div class="step" title="Add the button to the view">
-      <h1>Step 3: Add the button to the view</h1>
+      <h3>Step 3: Add the button to the view</h3>
       <blockquote>
         <div class="message">
           <p>Edit <code>app/views/topics/index.html.erb</code> so that the bottom loop looks like this:</p>
@@ -107,7 +107,7 @@ upvote_topic  POST   /topics/:id/upvote(.:format) topics#upvote
       </blockquote>
     </div>
     <div class="step" title="Confirm your changes in the browser">
-      <h1>Step 4: Confirm your changes in the browser</h1>
+      <h3>Step 4: Confirm your changes in the browser</h3>
       <blockquote>
         <div class="message">
           <p>Go back to <a href="http://localhost:3000/topics">http://localhost:3000/topics</a> and play.</p>
@@ -117,14 +117,5 @@ upvote_topic  POST   /topics/:id/upvote(.:format) topics#upvote
         </div>
       </blockquote>
     </div>
-  </div>
-  <div class="deploying">
-    <h1>Deploying</h1>
-    <blockquote>
-      <div class="message">
-        <p>Before the next step, you could try deploying your app to Heroku!</p>
-      </div>
-      <p class="link">Go on to <a class="link" href="deploying_to_heroku?back=allow_people_to_vote%23step4">Deploying To Heroku</a></p>
-    </blockquote>
   </div>
 </div>

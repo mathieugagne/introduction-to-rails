@@ -1,7 +1,7 @@
 <h1 class="page-header">Hooking Up Votes And Topics</h1>
 <div class="doc">
   <div class="goals">
-    <h1>Goals</h1>
+    <h2>Goals</h2>
     <%= image_tag 'topic_votes_association.png', alt: '' %>
     <div class="message">
       <p>
@@ -13,7 +13,7 @@
   </div>
   <div class="steps">
     <div class="step" title="Teach the Topic model about Votes">
-      <h1>Step 1: </span>Teach the Topic model about Votes</h1>
+      <h3>Step 1: </span>Teach the Topic model about Votes</h3>
       <blockquote>
         <div class="message">
           <p>Edit <code>app/models/topic.rb</code> so that it looks like this:</p>
@@ -26,7 +26,7 @@ end
       </blockquote>
     </div>
     <div class="step" title="Teach the Vote model about Topics">
-      <h1>Step 2: </span>Teach the Vote model about Topics</h1>
+      <h3>Step 2: </span>Teach the Vote model about Topics</h3>
       <blockquote>
         <div class="message">
           <p>Edit <code>app/models/vote.rb</code> so that it looks like this:</p>
@@ -39,7 +39,7 @@ end
       </blockquote>
     </div>
     <div class="step" title="Play around with Topics and Votes in the Rails console">
-      <h1>Step 3: </span>Play around with Topics and Votes in the Rails console</h1>
+      <h3>Step 3: </span>Play around with Topics and Votes in the Rails console</h3>
       <blockquote>
         <div class="message">
           <p>First, make sure you've made at least one topic on the site.</p>
@@ -67,7 +67,7 @@ Loading development environment (Rails 4.1.0)
           <span>Save the first topic into a variable:</span>
           <pre>my_topic = Topic.first</pre>
         </div>
-        <div class="message tip vertical-centerer">
+        <div class="alert alert-info">
           <h5>
             <i class="fa fa-info-circle fa-2x"></i>
             <code>my_topic</code> here could have been any variable name, but we'll stick with <code>my_topic</code> for consistency.
@@ -125,7 +125,7 @@ Loading development environment (Rails 4.1.0)
   </div>
 </div>
 <div class="explanation">
-  <h1>Explanation</h1>
+  <h2>Explanation</h2>
   <blockquote>
     <div class="message">
       <p><code>has_many</code> and <code>belongs_to</code>:</p>

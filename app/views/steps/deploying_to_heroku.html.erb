@@ -1,11 +1,8 @@
 <h1 class="page-header">Deploying To Heroku</h1>
 <div class="doc">
-  <h2>
-    <span>If you haven't yet deployed to heroku, start at </span><a href="#first-time">First-time setup</a><span>. Otherwise, start at </span><a href="#every-time">Every time</a><span>.</span>
-  </h2>
-  <h1>First-time setup</h1>
+  <h2>First-time setup</h2>
   <div class="step" title="Create a heroku application">
-    <h2>Step 1: </span>Create a heroku application</h2>
+    <h3>Step 1: </span>Create a heroku application</h3>
     <blockquote>
       <div class="console">
         <span>Type this in the terminal:</span><pre>heroku create</pre>
@@ -16,7 +13,7 @@
     </blockquote>
   </div>
   <div class="step" title="Edit the Gemfile">
-    <h2>Step 2: </span>Edit the Gemfile</h2>
+    <h3>Step 2: </span>Edit the Gemfile</h3>
     <blockquote>
       <div class="alert alert-info">
         <i class="fa fa-exclamation-circle fa-2x"></i>
@@ -46,7 +43,7 @@
     </blockquote>
   </div>
   <div class="step" title="Apply the Gemfile changes">
-    <h2>Step 3: </span>Apply the Gemfile changes</h2>
+    <h3>Step 3: </span>Apply the Gemfile changes</h3>
     <blockquote>
       <div class="console">
         <span>Type this in the terminal:</span><pre>bundle install --without production</pre>
@@ -57,7 +54,7 @@
     </blockquote>
   </div>
   <div class="step" title="Commit the Gemfile changes">
-    <h2>Step 4: </span>Commit the Gemfile changes</h2>
+    <h3>Step 4: </span>Commit the Gemfile changes</h3>
     <blockquote>
       <div class="message">
         <p>There are now changes to Gemfile and Gemfile.lock that need to be committed before we can push to heroku.</p>
@@ -66,15 +63,14 @@
         <span>Type this in the terminal:</span>
         <pre>
           git add .
-          git commit -m "Changed Gemfile for heroku"
-        </pre>
+          git commit -m "Changed Gemfile for heroku"</pre>
+        </div>
       </div>
-    </div>
-  </blockquote>
-</div>
-<h1>Every time</h1>
+    </blockquote>
+  </div>
+  <h2>Every time</h2>
   <div class="step" title="Commit any pending changes to git">
-    <h2>Step 1: </span>Commit any pending changes to git</h2>
+    <h3>Step 1: </span>Commit any pending changes to git</h3>
     <blockquote>
       <div class="message">
         <p>Heroku will only receive the files we've committed into our local git repository. So we need to make sure all changed files have been committed.</p>
@@ -86,72 +82,82 @@
         <p><code>git status</code> shows you any pending changes you've created. If it has no output, you're already ready to deploy! Otherwise...</p>
       </div>
       <div class="console">
-        <span>Type this in the terminal:</span><pre>git add .
-        git commit -m "Some helpful message for your future self"
-      </pre>
-    </div>
-    <div class="message">
-      <p>Your commit message should reference whatever your outstanding changes are: something like 'added votes to the topics index'.</p>
-    </div>
-  </blockquote>
-</div>
-<div class="step" title="Push changes to heroku">
-  <h2>Step 2: </span>Push changes to heroku</h2>
-  <blockquote>
-    <div class="console">
-      <span>Type this in the terminal:</span><pre>git push heroku master</pre>
-    </div>
-    <div class="message">
-      <p>This takes all changes you've committed locally and pushes them to heroku.</p>
-    </div>
-  </blockquote>
-</div>
-<div class="step" title="Run database migrations on Heroku">
-  <h2>Step 3: </span>Run database migrations on Heroku</h2>
-  <blockquote>
-    <div class="console">
-      <span>Type this in the terminal:</span><pre>heroku run rake db:migrate</pre>
-    </div>
-    <div class="message">
-      <p>This tells Heroku to run your migrations on its database, like running rake db:migrate locally. Heroku's database is separate from the one on your computer, which means it needs to be updated every time you make changes to the structure of your database.  It also means that you'll not see any of the data you entered into the sqlite3 database on your computer.</p>
-    </div>
-  </blockquote>
-</div>
-<div class="step" title="Visit your application">
-  <h2>Step 4: </span>Visit your application</h2>
-  <blockquote>
-    <div class="console">
-      <span>Type this in the terminal:</span><pre>heroku open</pre>
-    </div>
-    <div class="message">
-      <p>This opens the new application in your browser.</p>
-    </div>
-  </blockquote>
-</div>
-<div class="explanation">
-  <h1>Explanation</h1>
-  <blockquote>
-    <div class="message">
-      <p>First, we had to do some work to make Heroku happy with our application. This required updating the Gemfile and bundling.</p>
+        <span>Type this in the terminal:</span>
+        <pre>
+          git add .
+          git commit -m "Some helpful message for your future self"
+        </pre>
+      </div>
+      <div class="message">
+        <p>Your commit message should reference whatever your outstanding changes are: something like 'added votes to the topics index'.</p>
+      </div>
+    </blockquote>
+  </div>
+  <div class="step" title="Push changes to heroku">
+    <h3>Step 2: </span>Push changes to heroku</h3>
+    <blockquote>
+      <div class="console">
+        <span>Type this in the terminal:</span><pre>git push heroku master</pre>
+      </div>
+      <div class="message">
+        <p>This takes all changes you've committed locally and pushes them to heroku.</p>
+      </div>
+    </blockquote>
+  </div>
+  <div class="step" title="Run database migrations on Heroku">
+    <h3>Step 3: </span>Run database migrations on Heroku</h3>
+    <blockquote>
+      <div class="console">
+        <span>Type this in the terminal:</span><pre>heroku run rake db:migrate</pre>
+      </div>
+      <div class="message">
+        <p>This tells Heroku to run your migrations on its database, like running rake db:migrate locally. Heroku's database is separate from the one on your computer, which means it needs to be updated every time you make changes to the structure of your database.  It also means that you'll not see any of the data you entered into the sqlite3 database on your computer.</p>
+      </div>
+    </blockquote>
+  </div>
+  <div class="step" title="Visit your application">
+    <h3>Step 4: </span>Visit your application</h3>
+    <blockquote>
+      <div class="console">
+        <span>Type this in the terminal:</span><pre>heroku open</pre>
+      </div>
+      <div class="message">
+        <p>This opens the new application in your browser.</p>
+      </div>
+    </blockquote>
+  </div>
+  <div class="explanation">
+    <h1>Explanation</h1>
+    <blockquote>
+      <div class="message">
+        <p>First, we had to do some work to make Heroku happy with our application. This required updating the Gemfile and bundling.</p>
 
-      <ul>
-        <li><p>The Gemfile is a list of all the Ruby libraries your application needs.
-          What we've declared here is that we want to use the <code>sqlite3</code> library
-          while we're developing on our computer (the development group) but when
-          deploying to heroku (the production group) we want to use the <code>pg</code> library,
-          which is made for the type of database that heroku uses.</p></li>
-          <li><p>Bundler is how Ruby projects keep track of the gems that they use. We told
-            bundler what we wanted to use in the <code>Gemfile</code>, now we need to make sure those
-            gems are installed. Since we don't have the type of database heroku does, we
-            skip the production gems. Don't worry though! Bundler still logs them so
-            Heroku will install them when they get your code.</p></li>
-          </ul>
-        </div>
-        <div class="message">
-          <p>You should be able to deploy your application any time it's in a good, working state. Your typical workflow will look like:</p>
-        </div>
-        <%= image_tag 'workflow.png', alt: '' %>
-        <ol>
+        <ul>
+          <li>
+            <p>
+              The Gemfile is a list of all the Ruby libraries your application needs.
+              What we've declared here is that we want to use the <code>sqlite3</code> library
+              while we're developing on our computer (the development group) but when
+              deploying to heroku (the production group) we want to use the <code>pg</code> library,
+              which is made for the type of database that heroku uses.
+            </p>
+          </li>
+          <li>
+            <p>
+              Bundler is how Ruby projects keep track of the gems that they use. We told
+              bundler what we wanted to use in the <code>Gemfile</code>, now we need to make sure those
+              gems are installed. Since we don't have the type of database heroku does, we
+              skip the production gems. Don't worry though! Bundler still logs them so
+              Heroku will install them when they get your code.
+            </p>
+          </li>
+        </ul>
+      </div>
+      <div class="message">
+        <p>You should be able to deploy your application any time it's in a good, working state. Your typical workflow will look like:</p>
+      </div>
+      <%= image_tag 'workflow.png', alt: '' %>
+      <ol>
         <li><div class="message">
           <p>Add or change some code</p>
         </div></li>
@@ -167,5 +173,4 @@
       </div>
     </blockquote>
   </div>
-</div>
 </div>
